@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <div>
+            <pre>
+                "Revise all the concepts  : 
+
+                    Q 1 : Explain event loop 
+                    Q 2 : Explain callback hell
+                    Q 3 : How to write a promise function in JS and explain Promise chaining
+                    Q 4 : How to use async and await keywords in asynchronous JS"
+
+
+
+
+            </pre>
+            <pre style="color: brown;font-size: 0.9rem;">
+                setTimeout(() => {
+                    console.log("HI")
+                }, 4000);
+                
+                setTimeout(() => {
+                    console.log("Hello")
+                }, 2000); 
+
+                Hello will be executed and than Hi but JS is a synchronous 
+
+                Callback functions
+                function which accepts another function as argument and will be executed later 
+                after the function is executed.
+                
+
+                First we need to copy homework and than do the homework
+
+
+                function doHomeWork(callback){
+                    callback()
+                    console.log("do homework");
+                }
+                function copyHomeWork(){
+                    console.log("copy homework");
+                }
+                doHomeWork(copyHomeWork)
+
+                //copy homework
+                //do homework
+
+    
+
+
+            </pre>
+            <pre style="color: blueviolet;font-size: 1rem;">
+                Event Loop 
+                The event loop is a constantly running process that monitors both the callback queue 
+                and the call stack. If the call stack is not empty, the event loop waits until it is 
+                empty and places the next function from the callback queue to the call stack.
+            
+
+            </pre>
+            <img src="https://miro.medium.com/max/1760/1*Eg9EkLzLfO0nZTpqNq9WCQ.gif">
+
+            <pre style="color: cadetblue;font-size: 1rem;">
+                Callback Hell 
+                Its an triangle like structure where we can handle asynchronous operations and 
+            having multiple callback leads to hard to debug to developers and it will be problem to our js engine compiler also.
+
+                function call() {
+                    setTimeout(() => {
+                        console.log(1)
+                        setTimeout(() => {
+                            console.log(2)
+                            setTimeout(() => {
+                                console.log(3)
+                                setTimeout(() => {
+                                    console.log(4)
+                                    setTimeout(() => {
+                                        console.log(5)
+                                    }, 4000);
+                                }, 3000);
+                            }, 2000);
+                        }, 1000);
+                    }, 5000);
+                }
+                call()
+
+                //1
+                //2
+                //3
+                //4
+                //5
+    
+            
+
+            Promise function and Promise chaining
+
+            Promise are constructor function which take 2 parameters resolve and reject. If the promise is resolved
+            it will go to then block and if the promise is reject then it will go to catch block.
+
+            function printAlpha(num) {
+                return new Promise((resolve, reject) => {
+                        if(num % 2 == 0){
+                            console.log("Condition Satisfied");
+                        }else{
+                            console.log("Condition Unsatisfied");
+                        }
+                })
+            }
+            printAlpha(23).then((response) => {
+                console.log(response);
+            }).catch((error) =>{
+                console.log(reject);
+            })
+            //Condition Unsatisfied
+
+
+            Promise chaining 
+            Process of executing a sequence of asynchronous tasks one after another using promises is known as promise chaining.
+
+            function printAlpha(time, value) {
+                return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            console.log(value);
+                            resolve()  
+                        }, time);  
+                })
+            }
+            printAlpha(5000, 1)
+            .then(()=>printAlpha(4000,2))
+            .then(()=>printAlpha(3000,4))
+            .then(()=>printAlpha(1000,6))
+            .then(()=>printAlpha(6000,8))
+
+            //1
+            //2
+            //4
+            //6
+            //8
+
+
+            Async/Await 
+            Async The async keyword allows you to define a function that handles asynchronous operations.
+            You use the await keyword to wait for a Promise to settle either in resolved or rejected state. 
+            And you can use the await keyword only inside an async function
+
+
+
+            function printNum(time, num) {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        console.log(num)
+                        resolve();
+                    }, time);
+                    
+                })
+            }
+            async function print() {
+    
+                await printNum(4000,1);
+                await printNum(2000,2);
+                await printNum(4000,3);
+                await printNum(6000,4);
+                
+                
+            }
+            print()
+            //1
+            //2
+            //3
+            //4
+            
+            
+
+
+
+
+
+
+            </pre>
+           
+        </div>
+    </div>
+</body>
+<script>
+     setTimeout(() => {
+            console.log("HI")
+        }, 4000);
+        
+        setTimeout(() => {
+            console.log("Hello")
+        }, 2000);
+
+
+        function call() {
+                    setTimeout(() => {
+                        console.log(1)
+                        setTimeout(() => {
+                            console.log(2)
+                            setTimeout(() => {
+                                console.log(3)
+                                setTimeout(() => {
+                                    console.log(4)
+                                    setTimeout(() => {
+                                        console.log(5)
+                                    }, 4000);
+                                }, 3000);
+                            }, 2000);
+                        }, 1000);
+                    }, 5000);
+                }
+        call()
+
+
+        function printAlpha(num) {
+                return new Promise((resolve, reject) => {
+                        if(num % 2 == 0){
+                            console.log("Condition Satisfied");
+                        }else{
+                            console.log("Condition Unsatisfied");
+                        }
+                })
+            }
+            printAlpha(23).then((response) => {
+                console.log(response);
+            }).catch((error) =>{
+                console.log(reject);
+            })
+
+
+            function printAlpha(time, value) {
+                return new Promise((resolve, reject) => {
+                        setTimeout(() => {
+                            console.log(value);
+                            resolve()  
+                        }, time);  
+                })
+            }
+            printAlpha(5000, 1)
+            .then(()=>printAlpha(4000,2))
+            .then(()=>printAlpha(3000,4))
+            .then(()=>printAlpha(1000,6))
+            .then(()=>printAlpha(6000,8))
+
+
+            function printNum(time, num) {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        console.log(num)
+                        resolve();
+                    }, time);
+                    
+                })
+            }
+            async function print() {
+    
+                await printNum(4000,1);
+                await printNum(2000,2);
+                await printNum(4000,3);
+                await printNum(6000,4);
+                
+                
+            }
+            print()
+
+</script>
+</html>
